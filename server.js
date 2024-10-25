@@ -16,8 +16,38 @@ app.get('/', (req, res) => {
 
 //modifying URL to display my first name and last name
 app.get('/hello/:nathan/:carr', (req, res)=>{
-    res.send("Hello "+req.params.name+" "+req.params.lname);
+    const name = "Nathan";
+    const lname = "Carr";
+    res.send(`Hello ${name, lname}`);
 })
+
+//creating an api movies to show movie data when going to localhost:3000/movies
+app.get('/api/movies', (req, res) => {
+    const movies = [
+        {
+            "Title": "Avengers: Infinity War",
+            "Year": "2018",
+            "imdbID": "tt4154756",
+            "Type": "movie",
+            "Poster": "https://example.com/poster1.jpg"
+        },
+        {
+            "Title": "Captain America: Civil War",
+            "Year": "2016",
+            "imdbID": "tt3498820",
+            "Type": "movie",
+            "Poster": "https://example.com/poster2.jpg"
+        },
+        {
+            "Title": "World War Z",
+            "Year": "2013",
+            "imdbID": "tt0816711",
+            "Type": "movie",
+            "Poster": "https://example.com/poster3.jpg"
+        }
+    ];
+    res.status(200).json({ myMovies:movies });
+});
 
 //listen to port:3000
 app.listen(port, () => {
