@@ -54,6 +54,11 @@ app.get('/index', (req, res)=>{
     res.sendFile(__dirname+"/index.html");
 })
 
+//using get method so server gets firstname and last name from index.html and displays back under /name
+app.get('/name', (req, res)=>{
+    res.send('Hello '+ req.query.firstname + " " +req.query.lastname);
+} )
+
 //listen to port:3000
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
