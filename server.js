@@ -49,6 +49,11 @@ app.get('/api/movies', (req, res) => {
     res.status(200).json({ myMovies:movies });
 });
 
+//creating an index.html and sending from server when going to url localhost:3000/index
+app.get('/index', (req, res)=>{
+    res.sendFile(__dirname+"/index.html");
+})
+
 //listen to port:3000
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
