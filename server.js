@@ -2,6 +2,8 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
 
 //adding error-handling middleware to catch any server errors
 app.use((err, req, res, next) => {
@@ -54,10 +56,19 @@ app.get('/index', (req, res)=>{
     res.sendFile(__dirname+"/index.html");
 })
 
-//using get method so server gets firstname and last name from index.html and displays back under /name
+//GET is used to request data from a specified resource.
+//using get method so server gets firstname and last name from index.html and 
+//displays back under /name
 app.get('/name', (req, res)=>{
     res.send('Hello '+ req.query.firstname + " " +req.query.lastname);
-} )
+})
+
+//POST is used to send data to a server to create/update a resource
+//User enters FirstName + LastName to update server 
+//Data is parsed, very secure way of sending, sending data as part of body of html request
+app.post('/name', (req, res)=>{
+    res.send('Hello '+ req.body.firstname + " " +req.body.lastname)
+})
 
 //listen to port:3000
 app.listen(port, () => {
